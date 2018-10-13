@@ -86,6 +86,11 @@ class RefClauseBuilder implements Builder {
         $builder = new ColumnListBuilder();
         return $builder->build($parsed);
     }
+
+	protected function buildSubQuery($parsed) {
+		$builder = new SubQueryBuilder();
+		return $builder->build($parsed);
+	}
     
     public function build(array $parsed) {
         if ($parsed === false) {
@@ -101,6 +106,7 @@ class RefClauseBuilder implements Builder {
             $sql .= $this->buildBracketExpression($v);
             $sql .= $this->buildInList($v);
             $sql .= $this->buildColumnList($v);
+            $sql .= $this->buildSubQuery($v);
 
             if ($len == strlen($sql)) {
                 throw new UnableToCreateSQLException('expression ref_clause', $k, $v, 'expr_type');
