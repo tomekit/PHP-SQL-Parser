@@ -50,7 +50,7 @@ namespace PHPSQLParser\processors;
  */
 class ReplaceProcessor extends InsertProcessor {
 
-    public function process($tokenList) {
+    public function process($tokenList, $token_category = 'REPLACE') {
         return parent::process($tokenList, 'REPLACE');
     }
 
